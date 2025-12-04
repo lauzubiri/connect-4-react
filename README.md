@@ -1,4 +1,4 @@
-# 🔴 4 en Línea (Connect 4) :yellow_circle:
+# 🔴 4 en Línea (Connect 4) 🟡
 
 Este es mi desarrollo del clásico juego "4 en Línea" (o Conecta 4).
 
@@ -34,7 +34,7 @@ No basta con verificar filas y columnas; tuve que implementar una lógica que re
 
 1.  **Clona el repo**:
     ```bash
-    git clone [URL_DE_TU_REPO]
+    git clone https://github.com/lauzubiri/connect-4-react.git
     ```
 
 2.  **Instala las dependencias** (con pnpm):
@@ -59,4 +59,4 @@ No basta con verificar filas y columnas; tuve que implementar una lógica que re
 
 ---
 
-Desarrollado por **Taro**. :mate:
+Desarrollado por **Taro**. 🧉
