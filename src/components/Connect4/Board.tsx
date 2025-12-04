@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { DIMENSIONS, TURNS, STORAGE_KEYS, PIECE_STYLES } from "../../constants";
 import { checkWinner } from "../../logic/checkWinner";
 import confetti from "canvas-confetti";
+import "./Board.css";
 
 type Player = typeof TURNS[keyof typeof TURNS];
 
@@ -106,10 +107,10 @@ export default function Board() {
                             <div 
                                 key={`${rowIndex}-${colIndex}`}
                                 onClick={() => handleColumnClick(colIndex)}
-                                className="w-12 h-12 bg-blue-700 rounded-full cursor-pointer relative flex justify-center items-center shadow-inner overflow-hidden"
+                                className="w-12 h-12 bg-blue-700 rounded-full cursor-pointer relative flex justify-center items-center shadow-inner"
                             >
                                 {cell && (
-                                    <div className={`w-full h-full rounded-full ${PIECE_STYLES[cell]}`}></div>
+                                    <div className={`w-full h-full rounded-full piece ${PIECE_STYLES[cell]}`}></div>
                                 )}
                             </div>
                         ))

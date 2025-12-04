@@ -1,0 +1,20 @@
+@keyframes caerDesdeArriba {
+  0% {
+    transform: translateY(-300px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(20px);
+    opacity: 1;
+  }
+  85% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.piece {
+  animation: caerDesdeArriba 0.5s ease-out;
+}
