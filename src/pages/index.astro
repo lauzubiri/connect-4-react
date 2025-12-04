@@ -1,5 +1,5 @@
 ---
-
+import Board from '../components/Connect4/Board.jsx';
 ---
 
 <html lang="en">
@@ -10,9 +10,7 @@
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body>
-    <h1 class="bg-blue-900 text-white text-4xl p-10 text-center font-bold">
-      Connect 4 Game
-    </h1>
+  <body class="bg-gray-900 h-screen flex justify-center items-center">
+    <Board client:only="react" />
   </body>
 </html>
