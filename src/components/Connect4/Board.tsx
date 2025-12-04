@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { DIMENSIONS, TURNS, STORAGE_KEYS, PIECE_STYLES } from "../../constants";
 import { checkWinner } from "../../logic/checkWinner";
+import confetti from "canvas-confetti";
 
 type Player = typeof TURNS[keyof typeof TURNS];
 
@@ -17,12 +18,16 @@ export default function Board() {
         return turnFromStorage ? (turnFromStorage as Player) : TURNS.RED;
     });
 
-    const [winner, setWinner] = useState<Player | null>(null);
+    const [winner, setWinner] = useState<Player | null | false>(null);
 
     useEffect(() => {
         window.localStorage.setItem(STORAGE_KEYS.BOARD, JSON.stringify(board));
         window.localStorage.setItem(STORAGE_KEYS.TURN, turn);
     }, [board, turn]);
+
+    const checkEndGame = (newBoard: (Player | null)[][]) => {
+        return newBoard.every(row => row.every(cell => cell !== null));
+    }
 
     const handleColumnClick = (colIndex: number) => {
         if (winner) return;
@@ -40,11 +45,18 @@ export default function Board() {
         if (!placed) return;
 
         setBoard(newBoard);
+
         const gameWinner = checkWinner(newBoard);
+        
         if (gameWinner) {
             setWinner(gameWinner);
+            confetti();
             return;
-        } else {
+        } else if (checkEndGame(newBoard)) {
+            setWinner(false);
+            return;
+        }
+        else {
             const newTurn = turn === TURNS.RED ? TURNS.YELLOW : TURNS.RED;
             setTurn(newTurn);
         }
@@ -70,11 +82,15 @@ export default function Board() {
             </div>
             
             <div className="bg-blue-600 p-4 rounded-lg border-b-8 border-blue-800">
-                {winner && (
+                {winner !== null && (
                     <div className="absolute inset-0 z-10 bg-black/50 flex flex-col justify-center items-center rounded-lg backdrop-blur-sm">
                         <div className="bg-white p-6 rounded-xl shadow-2xl flex flex-col items-center gap-4">
-                            <h2 className="text-2xl font-bold text-gray-800">¡Ganó!</h2>
-                            <div className={`w-16 h-16 rounded-full ${PIECE_STYLES[winner]}`}></div>
+                            <h2 className="text-2xl font-bold text-gray-800">
+                                {winner === false ? '¡Empate!' : '¡Ganó!'}
+                            </h2>
+                            {winner !== false && (
+                                <div className={`w-16 h-16 rounded-full ${PIECE_STYLES[winner]}`}></div>
+                            )}
                             <button 
                                 onClick={resetGame}
                                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-bold"
@@ -84,7 +100,7 @@ export default function Board() {
                         </div>
                     </div>
                 )}
-                <div className="grid grid-cols-7 gap-3">
+                <div className="grid grid-cols-7 gap-5">
                     {board.map((row, rowIndex) => (
                         row.map((cell, colIndex) => (
                             <div 
