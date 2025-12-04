@@ -1,43 +1,62 @@
-# Astro Starter Kit: Minimal
+# 🔴 4 en Línea (Connect 4) :yellow_circle:
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Este es mi desarrollo del clásico juego "4 en Línea" (o Conecta 4).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Es un proyecto que parece simple visualmente, pero lo elegí porque quería desafiarme con la **lógica de programación**, el manejo de **matrices** y los algoritmos de detección de victoria.
 
-## 🚀 Project Structure
+## 💡 ¿Cómo funciona?
 
-Inside of your Astro project, you'll see the following folders and files:
+Es el juego clásico de estrategia para dos jugadores:
+1.  Turnos alternados (Rojo vs. Amarillo).
+2.  Al hacer clic en una columna, la ficha "cae" hasta la posición libre más baja.
+3.  El juego detecta automáticamente si alguien conectó 4 fichas (horizontal, vertical o diagonal).
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🛠️ Tecnologías que usé
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+* **[React / JavaScript / TypeScript]**: Para toda la lógica de estado.
+* **CSS / Estilos**: Para la grilla del tablero y las animaciones de las fichas.
+* **pnpm**: Para la gestión eficiente de dependencias. 💛
+* **Vite**: Para el entorno de desarrollo rápido.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🤯 El mayor desafío: La Lógica
 
-Any static assets, like images, can be placed in the `public/` directory.
+Este proyecto fue un gran ejercicio mental. Lo más difícil (y de lo que más aprendí) fue **el algoritmo para detectar al ganador**.
 
-## 🧞 Commands
+No basta con verificar filas y columnas; tuve que implementar una lógica que revisa el tablero en 4 direcciones después de cada jugada:
+1.  **Horizontal** (➖)
+2.  **Vertical** (⬇️)
+3.  **Diagonal Principal** (↘️)
+4.  **Diagonal Invertida** (↙️)
 
-All commands are run from the root of the project, from a terminal:
+*Nota de aprendizaje: Al principio intenté revisar todo el tablero en cada turno, pero luego optimicé para revisar solo alrededor de la última ficha jugada (o lo que hayas implementado).*
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## 🚀 ¿Cómo jugar en tu compu?
 
-## 👀 Want to learn more?
+1.  **Clona el repo**:
+    ```bash
+    git clone [URL_DE_TU_REPO]
+    ```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+2.  **Instala las dependencias** (con pnpm):
+    ```bash
+    cd 4-en-linea
+    pnpm install
+    ```
+
+3.  **Arranca el juego**:
+    ```bash
+    pnpm dev
+    ```
+
+4.  Abre el navegador en el puerto que te indique y ¡reta a alguien a jugar!
+
+---
+
+### 🔮 Próximos pasos (Ideas para la v2)
+* [ ] Agregar una IA básica para jugar contra la computadora.
+* [ ] Mejorar las animaciones de caída de las fichas.
+* [ ] Agregar un marcador de puntaje persistente.
+
+---
+
+Desarrollado por **Taro**. :mate:
