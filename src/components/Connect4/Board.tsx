@@ -82,7 +82,7 @@ export default function Board() {
                 <div className={`w-8 h-8 rounded-full ${PIECE_STYLES[turn]}`}></div>
             </div>
             
-            <div className="bg-blue-600 p-4 rounded-lg border-b-8 border-blue-800">
+            <div className="bg-blue-600 p-4 rounded-lg border-b-8 border-blue-800 overflow-hidden">
                 {winner !== null && (
                     <div className="absolute inset-0 z-10 bg-black/50 flex flex-col justify-center items-center rounded-lg backdrop-blur-sm">
                         <div className="bg-white p-6 rounded-xl shadow-2xl flex flex-col items-center gap-4">
